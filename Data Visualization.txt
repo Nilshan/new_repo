@@ -1,0 +1,136 @@
+#Creating bar charts
+
+# using matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+    
+# magic function!!!
+% matplotlib inline
+labels = ['Badulla', 'Kandy', 'Kegalle', 'Kurunegala', 'Matale', 'Other']
+Sizes = [130, 625, 40, 21, 111, 69]
+
+bar_possition = np.arange(len(labels))
+plt.bar(
+    left = bar_possition,
+    height=Sizes,
+    align='center',
+    alpha=0.5)
+plt.xticks(bar_possition, labels)
+plt.title("Number of Tea Estaes by District in Sri Lanka")
+plt.xlabel("District")
+plt.ylabel("number of states")
+
+
+#Time Series plot
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+%matplotlib inline
+ts = pd.Series(np.random.randn(100), index=pd.date_range('1/1/2000', periods=100))
+
+ts.head()
+ts.plot()
+
+#Pie Charts
+
+import matplotlib.pyplot as plt
+import numpy as np
+% matplotlib inline
+labels = ['Badulla', 'Kandy', 'Kegalle', 'Kurunegala', 'Matale', 'Other']
+Sizes = [130, 625, 40, 21, 111, 69]
+fig, ax = plt.subplots(1, 2)
+fig.set_size_inches(20, 10)
+ax1 = ax[0]
+explode = (0, 0.1, 0, 0 , 0, 0)
+ax1.pie(Sizes,
+    labels=labels,
+    explode=explode,
+    autopct="%1.1f%%",
+    startangle=90
+)
+ax1.set_title("Number of tea Estates by Districts in Sri Lnaka")
+ax1.axis('equal')
+
+# pie chart and a bar chart together
+ 
+import matplotlib.pyplot as plt
+import numpy as np
+% matplotlib inline
+labels = ['Badulla', 'Kandy', 'Kegalle', 'Kurunegala', 'Matale', 'Other']
+Sizes = [130, 625, 40, 21, 111, 69]
+fig, ax = plt.subplots(1, 2)
+fig.set_size_inches(20, 10)
+ax1 = ax[0]
+explode = (0, 0, 0.1, 0 , 0, 0)
+ax1.pie(Sizes,
+    labels=labels,
+    explode=explode,
+    autopct="%1.1f%%",
+    shadow=True,
+    startangle=90
+)
+ax1.set_title("Number of tea Estates by Districts in Sri Lnaka")
+ax1.axis('equal')
+ax2 = ax[1]
+labels = ['Badulla', 'Kandy', 'Kegalle', 'Kurunegala', 'Matale', 'Other']
+Sizes = [130, 625, 40, 21, 111, 69]
+bar_position = np.arange(len(labels))
+ax2.bar(left=bar_position,
+    height=Sizes,
+    align='center',
+    alpha=0.5)
+plt.xticks(bar_position, labels)
+ax2.set_ylabel("Number of Estates")
+ax2.set_xlabel("District")
+ax2.set_title("Number of Tea Estates by District in Sri Lanka")
+
+#Multiple Bar charts
+
+import pandas as pd
+raw_data = {
+    'sales_person':['Vihan', 'Aric', 'Dilini', 'Saman', 'Anagi'],
+    'jan_sales':[4, 24, 31, 2, 3],
+    'feb_sales':[25, 94, 57, 62, 70],
+    'march_sales':[5, 43, 23, 23, 51]}
+df = pd.DataFrame(raw_data)
+df
+import matplotlib.pyplot as plt
+%matplotlib inline
+sales_plot = df.plot(kind="bar",
+                    x=df["sales_person"],
+                    title="january Arrests",
+                    legend=True)
+
+#Probability Distributions
+
+import numpy as np
+df_hist = pd.DataFrame({'a': np.random.randn(1000)})
+df_hist.plot.hist(alpha=0.5)
+df_hist.plot.hist(alpha=0.5,normed=True)
+#adding bins
+df_hist2 = pd.DataFrame({'a': np.random.randn(1000)+3, 'b': np.random.randn(1000)})
+df_hist2.plot.hist(alpha=0.5, normed = True, bins = 50)
+
+#Box Plot
+df_hist2.plot.box()
+
+#Regression
+
+import numpy as np
+import pandas as pd
+from sklearn import datasets
+import statsmodels.api as sm
+import math
+%matplotlib inline
+data = datasets.load_boston()
+df = pd.DataFrame(
+    data.data, columns=data.feature_names)
+df.head()#gives top five observations
+df['MEDV'] = data.target
+df.head()
+# fitting the regression model
+model = sm.OLS(df.MEDV, sm.add_constant(df.RM))
+p = model.fit().params
+p
+sm.add_constant(df.RM)#adding ones
+
